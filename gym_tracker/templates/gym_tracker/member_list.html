@@ -1,0 +1,17 @@
+<!DOCTYPE  html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title> מתאמנים בחדר כושר</title>
+</head>
+<body>
+    <h1>רשימת מתאמנים </h1>
+    <ul>
+        {% for member in members%}
+            <li>{{ member.first_name }} {{ member.last_name }} ({{ member.email }})</li>
+        {% empty %}
+            <li>אין מתאמנים רשומים</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
