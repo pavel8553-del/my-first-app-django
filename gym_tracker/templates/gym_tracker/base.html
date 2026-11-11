@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}FitPulse - ניהול חדר כושר{% endblock %}</title>
+<style>
+:root{font-family:Arial,sans-serif;color:#1c2941;background:#f4f6fb}*{box-sizing:border-box}
+body{margin:0}.header{background:#17223d;color:#fff;padding:22px 0}.wrap{max-width:1040px;margin:auto;padding:0 20px}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}nav strong{font-size:23px;margin-left:22px}nav a{color:#e4eaff;text-decoration:none}
+main{padding-top:38px;padding-bottom:55px}h1{font-size:30px}.sub{color:#60708b}.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.button{display:inline-block;background:#3468dd;color:#fff;border:0;border-radius:9px;padding:11px 16px;text-decoration:none;cursor:pointer;font-size:15px}
+.button.danger{background:#c43c4a}.button.ghost{background:#e6eafd;color:#28447c}.card{background:#fff;border:1px solid #e1e6f0;border-radius:14px;box-shadow:0 4px 18px #1d35570b;padding:20px}
+table{border-collapse:collapse;width:100%}th,td{text-align:right;padding:14px;border-bottom:1px solid #edf0f5}th{color:#556481;font-size:14px}tr:last-child td{border:0}
+form p{margin:14px 0}label{display:block;font-weight:bold;margin-bottom:6px}input,select,textarea{font:inherit;border:1px solid #bfc9d9;border-radius:7px;padding:10px;width:100%;max-width:520px;background:#fff}input:focus,textarea:focus{outline:2px solid #9eb9f6}.inline-form{display:inline}.inline-form button{font-size:13px;padding:8px 11px}.actions{display:flex;gap:8px;align-items:center}.alert{padding:13px;border-radius:8px;background:#dff5e8;color:#195a38;margin-bottom:18px}.errorlist{color:#b5263d}.empty{color:#65738d;padding:24px;text-align:center}
+@media(max-width:650px){.card{overflow:auto}th,td{white-space:nowrap}h1{font-size:24px}}
+</style></head><body>
+<header class="header"><div class="wrap"><nav><strong>FitPulse</strong><a href="{% url 'member_list' %}">מתאמנים</a><a href="{% url 'workout_list' %}">אימונים</a><a href="/admin/">ניהול Admin</a></nav></div></header>
+<main class="wrap">{% for message in messages %}<div class="alert">{{ message }}</div>{% endfor %}
+{% block content %}{% endblock %}</main></body></html>

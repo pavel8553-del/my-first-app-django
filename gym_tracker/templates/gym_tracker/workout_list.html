@@ -1,0 +1,7 @@
+{% extends 'gym_tracker/base.html' %}
+{% block title %}אימונים | FitPulse{% endblock %}
+{% block content %}<div class="bar"><div><h1>ניהול אימונים</h1><p class="sub">תיעוד האימונים של המתאמנים</p></div><a class="button" href="{% url 'workout_add' %}">+ הוספת אימון</a></div>
+<div class="card"><table><thead><tr><th>מתאמן</th><th>תרגיל</th><th>סטים</th><th>חזרות</th><th>הערות</th><th>פעולות</th></tr></thead><tbody>
+{% for workout in workouts %}<tr><td>{{ workout.member }}</td><td>{{ workout.exercise_name }}</td><td>{{ workout.sets }}</td><td>{{ workout.reps }}</td><td>{{ workout.notes|default:'—' }}</td><td><form class="inline-form" method="post" action="{% url 'workout_delete' workout.pk %}" onsubmit="return confirm('למחוק את האימון?');">{% csrf_token %}<button class="button danger" type="submit">מחיקה</button></form></td></tr>
+{% empty %}<tr><td colspan="6" class="empty">אין אימונים רשומים.</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}

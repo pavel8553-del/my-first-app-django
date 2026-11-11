@@ -1,17 +1,7 @@
-<!DOCTYPE  html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title> מתאמנים בחדר כושר</title>
-</head>
-<body>
-    <h1>רשימת מתאמנים </h1>
-    <ul>
-        {% for member in members%}
-            <li>{{ member.first_name }} {{ member.last_name }} ({{ member.email }})</li>
-        {% empty %}
-            <li>אין מתאמנים רשומים</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'gym_tracker/base.html' %}
+{% block title %}מתאמנים | FitPulse{% endblock %}
+{% block content %}<div class="bar"><div><h1>ניהול מתאמנים</h1><p class="sub">רשימת המתאמנים הרשומים בחדר הכושר</p></div><a class="button" href="{% url 'member_add' %}">+ הוספת מתאמן</a></div>
+<div class="card"><table><thead><tr><th>שם מלא</th><th>אימייל</th><th>תאריך הצטרפות</th><th>פעולות</th></tr></thead><tbody>
+{% for member in members %}<tr><td>{{ member.first_name }} {{ member.last_name }}</td><td>{{ member.email }}</td><td>{{ member.joined_date|date:'d/m/Y' }}</td><td><form class="inline-form" method="post" action="{% url 'member_delete' member.pk %}" onsubmit="return confirm('למחוק את המתאמן ואת כל האימונים שלו?');">{% csrf_token %}<button class="button danger" type="submit">מחיקה</button></form></td></tr>
+{% empty %}<tr><td colspan="4" class="empty">אין מתאמנים רשומים. הוסף מתאמן ראשון.</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}
